@@ -5,7 +5,7 @@ const mongoose = require('mongoose') // 載入 mongoose
 const app = express();
 const port = 3000;
 
-mongoose.connect("mongodb://localhost/todo-list", {
+mongoose.connect("mongodb://localhost/url_shortener", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }); // 設定連線到 mongoDB
