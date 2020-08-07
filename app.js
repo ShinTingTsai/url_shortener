@@ -1,6 +1,8 @@
 // use express
 const express = require("express");
 const mongoose = require('mongoose') // 載入 mongoose
+const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 
 const app = express();
 const port = 3000;
@@ -21,11 +23,15 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
+app.use(bodyParser.urlencoded({ extended: true }))
 
 
 //setup router
 app.get('/', (req, res) => {
-  res.send("hello world");
+  // res.send("hello world");
+  res.render('index')
 })
 // app.listen
 app.listen(port, () => {
