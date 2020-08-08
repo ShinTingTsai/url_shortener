@@ -1,16 +1,24 @@
 <div class="container">
  <div class="jumbotron bg-transparent">
   <h1 class="display-4 text-primary">URL SHORTENER</h1>
-  <form action="/shorten">
+  <form action="/create" method="POST">
     <div class="form-group">
-      <label for="longURL" class="lead text-black-50">Paste your ling URL here:</label>
-      <input type="text" class="form-control" id="longURL" name="longURL">
-      <small id="message" class="form-text text-danger">{{{ msg }}} test message</small>
+      <label for="longURL" class="lead text-black-50">Paste your URL here:</label>
+      <input {{#if shortURL}} disabled {{/if}} type="text" class="form-control" id="longURL" name="longURL" value="{{{ longURL }}}">
+      <small id="message" class="form-text text-danger">{{{ msg }}}</small>
     </div>
-    <button type="submit" class="btn btn-info">Submit</button>
+    <button {{#if shortURL}} disabled {{/if}} type="submit" class="btn btn-info">Shorten</button>
   </form>  
+  {{#if shortURL}}
   <hr class="my-4">
   <p class="lead text-black-50">Short URL:</p>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" value="{{{ shortURL }}}">
+    <div class="input-group-append">
+      <button class="btn btn-outline-info" type="button" id="button-addon2">Copy URL</button>
+    </div>
+  </div>
+  {{/if}}
  </div>
 </div>
 
