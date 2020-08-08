@@ -13,10 +13,6 @@ app.set("view engine", "handlebars");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router)
 
-//setup router
-// app.get("/", (req, res) => {
-//   res.render("index");
-// })
 
 
 

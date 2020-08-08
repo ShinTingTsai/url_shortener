@@ -6,5 +6,13 @@ router.get('/', (req, res) => {
 })
 
 
+router.get("/shorten", (req, res) => {
+  // res.render("index", { message: });
+  console.log('req.query', req.query)
+  const longURL = req.query.longURL
+  res.render("index", { msg: longURL});
+});
+
+
 
 module.exports = router;
