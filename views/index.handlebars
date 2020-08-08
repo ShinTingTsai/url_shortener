@@ -4,18 +4,22 @@
   <form action="/create" method="POST">
     <div class="form-group">
       <label for="longURL" class="lead text-black-50">Paste your URL here:</label>
-      <input {{#if shortURL}} disabled {{/if}} type="text" class="form-control" id="longURL" name="longURL" value="{{{ longURL }}}">
+      <input {{#if shortUrl}} disabled {{/if}} type="text" class="form-control" id="longUrl" name="longUrl" value="{{{ longUrl }}}">
       <small id="message" class="form-text text-danger">{{{ msg }}}</small>
     </div>
-    <button {{#if shortURL}} disabled {{/if}} type="submit" class="btn btn-info">Shorten</button>
+    <button {{#if shortUrl}} disabled {{/if}} type="submit" class="btn btn-info">Shorten</button>
+    
+    {{#if shortUrl}}
+      <a class="btn btn-success" href="/" role="button">Back</a>
+    {{/if}}
   </form>  
-  {{#if shortURL}}
+  {{#if shortUrl}}
   <hr class="my-4">
-  <p class="lead text-black-50">Short URL:</p>
+  <p class="lead text-black-50">Short Url:</p>
   <div class="input-group mb-3">
-    <input type="text" class="form-control" value="{{{ shortURL }}}">
+    <input type="text" class="form-control" value="{{{ shortUrl }}}">
     <div class="input-group-append">
-      <button class="btn btn-outline-info" type="button" id="button-addon2">Copy URL</button>
+      <button class="btn btn-outline-info" type="button" id="button-addon2">Copy Url</button>
     </div>
   </div>
   {{/if}}
