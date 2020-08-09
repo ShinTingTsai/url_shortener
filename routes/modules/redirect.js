@@ -12,21 +12,38 @@ router.get('/:shortUrl', (req, res) => {
         .then((item) => {
           console.log("item: ", item);
           if (item) {
-            res.redirect(`${item.longUrl}`)
+            resolve(item._id);
+            res.redirect(`${item.longUrl}`);
           } else {
-            const msg = 'URL not exist'
-            res.render('index', { longUrl:'No Data', shortUrl: shortUrl, msg: msg})
+            const msg = "URL not exist";
+            res.render("index", {
+              longUrl: "No Data",
+              shortUrl: shortUrl,
+              msg: msg,
+            });
           }
         })
+        .catch((error) => console.log(error));
     })
   }
   // update click count
+  function updateClickCount(id) {
+    return new Promise((resolve, reject) => {
+      Url.findById(id)
+        .then((item) => {
+          item.count += 1;
+          item.save();
+        })
+        .catch((error) => console.log(error));
+    })
+  }
+
 
   async function redirectUrlAsync(shortUrl) {
-    await redirectUrl(shortUrl);
+    const id = await redirectUrl(shortUrl);
+    await updateClickCount(id)
   }
   redirectUrlAsync(shortUrl);
 })
-
 
 module.exports = router;
