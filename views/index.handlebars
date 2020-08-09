@@ -1,28 +1,28 @@
 <div class="container d-flex flex-column justify-content-center align-items-center">
- <div class="jumbotron bg-transparent">
-  <h1 class="display-4 text-primary">URL SHORTENER</h1>
-  <form action="/create" method="POST">
-    <div class="form-group">
-      <label for="longURL" class="lead text-black-50">Paste your URL here:</label>
-      <input {{#if shortUrl}} disabled {{/if}} required type="text" class="form-control" id="longUrl" name="longUrl" value="{{{ longUrl }}}">
-      <small id="message" class="form-text text-danger">{{{ msg }}}</small>
-    </div>
-    <button {{#if shortUrl}} disabled {{/if}} type="submit" class="btn btn-info">Shorten</button>
-    
-    {{#if shortUrl}}
+  <div class="jumbotron bg-transparent">
+    <h1 class="display-4 text-primary">URL SHORTENER</h1>
+    <form action="/create" method="POST">
+      <div class="form-group">
+        <label for="longURL" class="lead text-black-50">Paste your URL here:</label>
+        <input {{#if shortUrl}} disabled {{/if}} required type="text" class="form-control" id="longUrl" name="longUrl"
+          placeholder="https://" autocomplete="url" value="{{{ longUrl }}}">
+        <small id="message" class="form-text text-danger">{{{ msg }}}</small>
+      </div>
+      <button {{#if shortUrl}} disabled {{/if}} type="submit" class="btn btn-info">Shorten</button>
+  
+      {{#if shortUrl}}
       <a class="btn btn-success" href="/" role="button">Back</a>
-    {{/if}}
-  </form>  
-  {{#if shortUrl}}
-  <hr class="my-4">
-  <p class="lead text-black-50">Short Url:</p>
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" value="{{{ shortUrl }}}">
-    <div class="input-group-append">
-      <button class="btn btn-outline-info" type="button" id="button-addon2">Copy Url</button>
+      {{/if}}
+    </form>
+    {{#if shortUrl}}
+    <hr class="my-4">
+    <p class="lead text-black-50">Short Url:</p>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" value="{{{ shortUrl }}}">
+      <div class="input-group-append">
+        <button class="btn btn-outline-info" type="button" id="button-addon2">Copy Url</button>
+      </div>
     </div>
+    {{/if}}
   </div>
-  {{/if}}
- </div>
 </div>
-
