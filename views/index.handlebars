@@ -1,4 +1,4 @@
-<div class="container d-flex flex-column justify-content-center align-items-center">
+<div class="container">
   <div class="jumbotron bg-transparent">
     <h1 class="display-4 text-primary">URL SHORTENER</h1>
     <form action="/create" method="POST">
@@ -18,9 +18,9 @@
     <hr class="my-4">
     <p class="lead text-black-50">Short Url:</p>
     <div class="input-group mb-3">
-      <input type="text" class="form-control" value="{{{ shortUrl }}}">
+      <input readonly type="text" class="form-control" id="txt_output" value="https://gentle-falls-00001.herokuapp.com/r/{{{ shortUrl }}}">
       <div class="input-group-append">
-        <button class="btn btn-outline-info" type="button" id="button-addon2">Copy Url</button>
+        <button class="btn btn-outline-info far fa-copy" type="button" id="button-addon2" data-toggle="tooltip" data-placement="top" title="copy" onclick="copyurl()">Copy</button>
       </div>
     </div>
     {{/if}}
