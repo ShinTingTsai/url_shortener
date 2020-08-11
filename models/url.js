@@ -19,4 +19,4 @@ const urlSchema = new Schema({
     default: 0
   }
 })
-module.exports = mongoose.model('Url', urlSchema);
+module.exports = mongoose.model('Url', urlSchema)
