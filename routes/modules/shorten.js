@@ -46,19 +46,28 @@ router.post("/", async (req, res) => {
 
   function showUrl(url) {
     return new Promise((resolve, reject) => {
-      res.render("index", {
-        longUrl: url.longUrl,
-        shortUrl: url.shortUrl,
-      });
+      try {
+        res.render("index", {
+          longUrl: url.longUrl,
+          shortUrl: url.shortUrl,
+        })
+      } catch (error) {
+        console.log(error);
+      }
     });
   }
 
   async function shortenUrl(url) {
-    url = await checkLongUrlExist(url);
-    url = await getShortCode(url);
-    await showUrl(url);
+    try {
+      url = await checkLongUrlExist(url);
+      url = await getShortCode(url);
+      await showUrl(url);
 
-    console.log("check url: ", url);
+      console.log("check url: ", url);
+    } catch (error) {
+      console.log(error);
+    }
+
   }
   shortenUrl(url);
 });

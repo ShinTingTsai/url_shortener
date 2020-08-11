@@ -40,8 +40,13 @@ router.get('/:shortUrl', (req, res) => {
 
 
   async function redirectUrlAsync(shortUrl) {
-    const id = await redirectUrl(shortUrl);
-    await updateClickCount(id)
+    try {
+      const id = await redirectUrl(shortUrl);
+      await updateClickCount(id)
+    } catch (error) {
+      console.log(error)
+    }
+
   }
   redirectUrlAsync(shortUrl);
 })
