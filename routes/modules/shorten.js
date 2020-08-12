@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
   // Get short Url
   function getShortCode (url) {
     return new Promise((resolve, reject) => {
-      try{
+      try {
         // 如果網址已經存在，則直接讀取短網址，不另外產生
         if (url.shortUrl) {
           resolve(url)
@@ -62,17 +62,11 @@ router.post('/', async (req, res) => {
   }
 
   async function shortenUrl (url) {
-    try {
-      url = await checkLongUrlExist(url)
-      url = await getShortCode(url)
-      await showUrl(url)
-
-      console.log('check url: ', url)
-    } catch (error) {
-      console.log(error)
-    }
+    url = await checkLongUrlExist(url)
+    url = await getShortCode(url)
+    await showUrl(url)
   }
-  shortenUrl(url)
+  shortenUrl(url).catch(error => console.log(error))
 })
 
 module.exports = router

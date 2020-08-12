@@ -39,14 +39,10 @@ router.get('/:shortUrl', (req, res) => {
   }
 
   async function redirectUrlAsync (shortUrl) {
-    try {
-      const id = await redirectUrl(shortUrl)
-      await updateClickCount(id)
-    } catch (error) {
-      console.log(error)
-    }
+    const id = await redirectUrl(shortUrl)
+    await updateClickCount(id)
   }
-  redirectUrlAsync(shortUrl)
+  redirectUrlAsync(shortUrl).catch(error => console.log(error))
 })
 
 module.exports = router
