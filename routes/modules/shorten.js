@@ -14,51 +14,41 @@ router.post('/', async (req, res) => {
           if (item) resolve(item)
           else resolve(url)
         })
-        .catch((error) => console.log(error))
-    })
+    }).catch((error) => console.log(error))
   }
 
   // Get short Url
   function getShortCode (url) {
     return new Promise((resolve, reject) => {
-      try {
-        // 如果網址已經存在，則直接讀取短網址，不另外產生
-        if (url.shortUrl) {
-          resolve(url)
-        }
-        // 如果網址不存在，則產生新的短網址
-        else {
-          url.shortUrl = getRandomCode(5)
-          Url.find()
-            .then((items) => {
-              // [檢查點]產生不重複短網址
-              const urlsArray = []
-              items.forEach((item) => urlsArray.push(item.shortUrl))
-              while (urlsArray.includes(url.shortUrl)) {
-                url.shortUrl = getRandomCode(url.shortUrl.length)
-              }
-              Url.create(url)
-              resolve(url)
-            })
-            .catch((error) => console.log(error))
-        }
-      } catch (error) {
-        console.log(error)
+      // 如果網址已經存在，則直接讀取短網址，不另外產生
+      if (url.shortUrl) {
+        resolve(url)
       }
-    })
+      // 如果網址不存在，則產生新的短網址
+      else {
+        url.shortUrl = getRandomCode(5)
+        Url.find()
+          .then((items) => {
+            // [檢查點]產生不重複短網址
+            const urlsArray = []
+            items.forEach((item) => urlsArray.push(item.shortUrl))
+            while (urlsArray.includes(url.shortUrl)) {
+              url.shortUrl = getRandomCode(url.shortUrl.length)
+            }
+            Url.create(url)
+            resolve(url)
+          })
+      }
+    }).catch((error) => console.log(error))
   }
 
   function showUrl (url) {
     return new Promise((resolve, reject) => {
-      try {
-        res.render('index', {
-          longUrl: url.longUrl,
-          shortUrl: url.shortUrl
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    })
+      res.render('index', {
+        longUrl: url.longUrl,
+        shortUrl: url.shortUrl
+      })
+    }).catch((error) => console.log(error))
   }
 
   async function shortenUrl (url) {

@@ -23,8 +23,7 @@ router.get('/:shortUrl', (req, res) => {
             })
           }
         })
-        .catch((error) => console.log(error))
-    })
+    }).catch((error) => console.log(error))
   }
   // update click count
   function updateClickCount (id) {
@@ -34,8 +33,7 @@ router.get('/:shortUrl', (req, res) => {
           item.count += 1
           item.save()
         })
-        .catch((error) => console.log(error))
-    })
+    }).catch((error) => console.log(error))
   }
 
   async function redirectUrlAsync (shortUrl) {
