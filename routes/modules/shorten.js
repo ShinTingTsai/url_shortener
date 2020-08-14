@@ -52,11 +52,15 @@ router.post('/', async (req, res) => {
   }
 
   async function shortenUrl (url) {
-    url = await checkLongUrlExist(url)
-    url = await getShortCode(url)
-    await showUrl(url)
+    try {
+      url = await checkLongUrlExist(url)
+      url = await getShortCode(url)
+      await showUrl(url)
+    } catch (error) {
+      console.log(error)
+    }
   }
-  shortenUrl(url).catch(error => console.log(error))
+  shortenUrl(url)
 })
 
 module.exports = router
