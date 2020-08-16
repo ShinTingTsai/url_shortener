@@ -1,6 +1,6 @@
 # URL Shortener
 
-
+![image](https://github.com/ShinTingTsai/url_shortener/blob/master/Snapshot.png)
 
 Demo:
 https://gentle-falls-00001.herokuapp.com
